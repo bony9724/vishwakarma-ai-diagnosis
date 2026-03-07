@@ -3,24 +3,22 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Vishwakarma AI — Startup Diagnosis Engine</title>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<title>Startup Diagnosis Engine — Vishwakarma AI</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #05080f;
-    --bg2: #0a0f1a;
-    --bg3: #0f1520;
-    --border: #1a2535;
-    --blue: #3b82f6;
-    --blue2: #60a5fa;
-    --cyan: #06b6d4;
-    --green: #10b981;
-    --amber: #f59e0b;
-    --red: #ef4444;
-    --purple: #8b5cf6;
-    --text: #e2e8f0;
-    --muted: #64748b;
-    --soft: #94a3b8;
+    --bg: #f0f4ff;
+    --white: #ffffff;
+    --navy: #0a0f2e;
+    --cyan: #0a84ff;
+    --cyan2: #38bdf8;
+    --cyan-light: #e8f4ff;
+    --cyan-border: #bfdbfe;
+    --text: #111827;
+    --muted: #6b7280;
+    --soft: #9ca3af;
+    --border: #e5e7eb;
+    --shadow: 0 2px 12px rgba(10,132,255,0.08);
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -28,418 +26,301 @@
   body {
     background: var(--bg);
     color: var(--text);
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Inter', sans-serif;
     min-height: 100vh;
-    overflow-x: hidden;
   }
-
-  /* Background grid */
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image: 
-      linear-gradient(rgba(59,130,246,0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(59,130,246,0.03) 1px, transparent 1px);
-    background-size: 40px 40px;
-    pointer-events: none;
-    z-index: 0;
-  }
-
-  .glow {
-    position: fixed;
-    width: 600px;
-    height: 600px;
-    border-radius: 50%;
-    filter: blur(120px);
-    pointer-events: none;
-    z-index: 0;
-  }
-  .glow-1 { top: -200px; right: -100px; background: rgba(59,130,246,0.06); }
-  .glow-2 { bottom: -200px; left: -100px; background: rgba(139,92,246,0.05); }
 
   .container {
-    max-width: 900px;
+    max-width: 860px;
     margin: 0 auto;
-    padding: 0 20px;
-    position: relative;
-    z-index: 1;
+    padding: 32px 20px 60px;
   }
 
-  /* Header */
-  header {
-    padding: 48px 0 32px;
-    text-align: center;
-    border-bottom: 1px solid var(--border);
-    margin-bottom: 48px;
-  }
-
-  .logo {
-    display: inline-flex;
+  .page-header {
+    display: flex;
     align-items: center;
-    gap: 10px;
-    margin-bottom: 20px;
-    font-family: 'Syne', sans-serif;
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--blue);
-    letter-spacing: 2px;
-    text-transform: uppercase;
+    gap: 16px;
+    margin-bottom: 32px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--border);
   }
 
-  .logo-icon {
-    width: 32px;
-    height: 32px;
-    background: linear-gradient(135deg, var(--blue), var(--purple));
-    border-radius: 8px;
+  .header-icon {
+    width: 48px;
+    height: 48px;
+    background: var(--cyan-light);
+    border-radius: 14px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 16px;
+    font-size: 22px;
+    flex-shrink: 0;
+    border: 1px solid var(--cyan-border);
   }
 
-  h1 {
-    font-family: 'Syne', sans-serif;
-    font-size: clamp(28px, 5vw, 44px);
+  .header-text h1 {
+    font-size: 22px;
     font-weight: 800;
-    line-height: 1.1;
-    margin-bottom: 12px;
-    background: linear-gradient(135deg, #fff 0%, var(--blue2) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: var(--navy);
   }
 
-  .subtitle {
-    color: var(--soft);
-    font-size: 16px;
-    font-weight: 300;
-    max-width: 500px;
-    margin: 0 auto;
-    line-height: 1.6;
+  .header-text p {
+    font-size: 13px;
+    color: var(--muted);
+    margin-top: 3px;
   }
 
-  /* Cards */
   .card {
-    background: var(--bg2);
+    background: var(--white);
     border: 1px solid var(--border);
     border-radius: 16px;
-    padding: 28px;
-    margin-bottom: 20px;
+    padding: 24px;
+    margin-bottom: 16px;
+    box-shadow: var(--shadow);
   }
 
   .card-title {
-    font-family: 'Syne', sans-serif;
-    font-size: 13px;
+    font-size: 11px;
     font-weight: 700;
-    color: var(--blue);
+    color: var(--cyan);
     letter-spacing: 1.5px;
     text-transform: uppercase;
-    margin-bottom: 20px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
+    margin-bottom: 18px;
   }
 
-  /* Form */
   .form-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 16px;
+    gap: 14px;
   }
 
-  .form-group { display: flex; flex-direction: column; gap: 8px; }
+  .form-group { display: flex; flex-direction: column; gap: 6px; }
   .form-group.full { grid-column: 1 / -1; }
 
-  label {
-    font-size: 12px;
-    font-weight: 500;
-    color: var(--soft);
-    letter-spacing: 0.5px;
-  }
-
-  .required { color: var(--blue); }
+  label { font-size: 12px; font-weight: 600; color: var(--text); }
+  .required { color: var(--cyan); }
 
   input, select, textarea {
-    background: var(--bg3);
+    background: #f9fafb;
     border: 1px solid var(--border);
     border-radius: 10px;
     color: var(--text);
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Inter', sans-serif;
     font-size: 14px;
-    padding: 12px 14px;
+    padding: 11px 14px;
     outline: none;
-    transition: border-color 0.2s;
+    transition: all 0.2s;
     width: 100%;
   }
 
   input:focus, select:focus, textarea:focus {
-    border-color: var(--blue);
-    background: rgba(59,130,246,0.04);
+    border-color: var(--cyan);
+    background: var(--white);
+    box-shadow: 0 0 0 3px rgba(10,132,255,0.08);
   }
 
-  input::placeholder, textarea::placeholder { color: var(--muted); }
+  input::placeholder, textarea::placeholder { color: var(--soft); }
+  textarea { resize: vertical; min-height: 80px; line-height: 1.6; }
 
-  select { cursor: pointer; appearance: none; }
-  select option { background: var(--bg3); }
-
-  textarea { resize: vertical; min-height: 90px; line-height: 1.6; }
-
-  /* Area selector */
   .area-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 12px;
-    margin-bottom: 20px;
+    gap: 10px;
+    margin-bottom: 16px;
   }
 
   .area-btn {
-    background: var(--bg3);
-    border: 1px solid var(--border);
+    background: #f9fafb;
+    border: 1.5px solid var(--border);
     border-radius: 12px;
-    padding: 16px 12px;
+    padding: 14px 10px;
     cursor: pointer;
     transition: all 0.2s;
     text-align: center;
-    color: var(--soft);
-    font-family: 'DM Sans', sans-serif;
-    font-size: 13px;
-    font-weight: 500;
+    color: var(--muted);
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
     line-height: 1.4;
   }
 
-  .area-btn:hover {
-    border-color: var(--blue);
-    color: var(--text);
-    background: rgba(59,130,246,0.06);
-  }
+  .area-btn:hover { border-color: var(--cyan); color: var(--cyan); background: var(--cyan-light); }
+  .area-btn.active { border-color: var(--cyan); background: var(--cyan-light); color: var(--cyan); }
+  .area-btn .emoji { font-size: 18px; display: block; margin-bottom: 5px; }
 
-  .area-btn.active {
-    border-color: var(--blue);
-    background: rgba(59,130,246,0.1);
-    color: var(--blue2);
-  }
-
-  .area-btn .emoji { font-size: 20px; display: block; margin-bottom: 6px; }
-
-  /* Question dropdown */
-  .question-wrap { margin-bottom: 20px; }
   .area-selected {
     font-size: 12px;
-    color: var(--green);
+    font-weight: 600;
+    color: var(--cyan);
     margin-bottom: 10px;
-    display: flex;
-    align-items: center;
-    gap: 6px;
   }
 
-  /* Buttons */
   .btn-primary {
-    background: linear-gradient(135deg, var(--blue), #2563eb);
+    background: var(--cyan);
     border: none;
     border-radius: 12px;
     color: white;
     cursor: pointer;
-    font-family: 'Syne', sans-serif;
+    font-family: 'Inter', sans-serif;
     font-size: 15px;
     font-weight: 700;
-    padding: 16px 32px;
+    padding: 15px 32px;
     width: 100%;
     transition: all 0.2s;
-    letter-spacing: 0.5px;
+    box-shadow: 0 4px 14px rgba(10,132,255,0.3);
   }
 
-  .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 8px 24px rgba(59,130,246,0.3); }
-  .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+  .btn-primary:hover { background: #0070e0; transform: translateY(-1px); }
+  .btn-primary:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
 
   .btn-secondary {
     background: transparent;
-    border: 1px solid var(--border);
+    border: 1.5px solid var(--border);
     border-radius: 10px;
-    color: var(--soft);
+    color: var(--muted);
     cursor: pointer;
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Inter', sans-serif;
     font-size: 13px;
+    font-weight: 500;
     padding: 10px 20px;
     transition: all 0.2s;
-    margin-top: 12px;
+    margin-top: 10px;
   }
 
-  .btn-secondary:hover { border-color: var(--soft); color: var(--text); }
+  .btn-secondary:hover { border-color: var(--cyan); color: var(--cyan); }
 
-  /* Loading */
   .loading {
     display: none;
     text-align: center;
-    padding: 32px;
+    padding: 40px 24px;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    box-shadow: var(--shadow);
+    margin-bottom: 16px;
   }
 
   .loading.show { display: block; }
 
   .spinner {
-    width: 40px;
-    height: 40px;
-    border: 3px solid var(--border);
-    border-top-color: var(--blue);
+    width: 36px;
+    height: 36px;
+    border: 3px solid var(--cyan-border);
+    border-top-color: var(--cyan);
     border-radius: 50%;
     animation: spin 0.8s linear infinite;
-    margin: 0 auto 16px;
+    margin: 0 auto 14px;
   }
 
   @keyframes spin { to { transform: rotate(360deg); } }
 
-  .loading-title {
-    font-family: 'Syne', sans-serif;
-    font-size: 16px;
-    font-weight: 700;
-    color: var(--text);
-    margin-bottom: 6px;
-  }
-
+  .loading-title { font-size: 16px; font-weight: 700; color: var(--navy); margin-bottom: 6px; }
   .loading-sub { font-size: 13px; color: var(--muted); }
 
-  /* Error */
   .error-box {
     display: none;
-    background: rgba(239,68,68,0.08);
-    border: 1px solid rgba(239,68,68,0.3);
-    border-radius: 12px;
-    padding: 16px;
-    margin-bottom: 20px;
-    font-size: 14px;
-    color: #fca5a5;
+    background: #fef2f2;
+    border: 1px solid #fecaca;
+    border-radius: 10px;
+    padding: 14px 16px;
+    margin-bottom: 16px;
+    font-size: 13px;
+    color: #dc2626;
+    font-weight: 500;
   }
 
   .error-box.show { display: block; }
 
-  /* Results */
-  .results {
-    display: none;
-    animation: fadeUp 0.4s ease;
-  }
-
+  .results { display: none; animation: fadeUp 0.3s ease; }
   .results.show { display: block; }
 
   @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(16px); }
+    from { opacity: 0; transform: translateY(12px); }
     to { opacity: 1; transform: translateY(0); }
   }
 
   .result-header {
-    background: linear-gradient(135deg, #1e3a5f, #162d4a);
-    border: 1px solid rgba(59,130,246,0.3);
+    background: linear-gradient(135deg, var(--navy) 0%, #1a2550 100%);
     border-radius: 16px 16px 0 0;
-    padding: 24px 28px;
+    padding: 22px 24px;
   }
 
   .result-badge {
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    background: rgba(59,130,246,0.15);
-    border: 1px solid rgba(59,130,246,0.3);
+    background: rgba(10,132,255,0.2);
+    border: 1px solid rgba(10,132,255,0.4);
     border-radius: 20px;
     padding: 4px 12px;
     font-size: 11px;
-    font-weight: 600;
-    color: var(--blue2);
+    font-weight: 700;
+    color: var(--cyan2);
     letter-spacing: 1px;
     text-transform: uppercase;
-    margin-bottom: 12px;
+    margin-bottom: 10px;
   }
 
-  .result-title {
-    font-family: 'Syne', sans-serif;
-    font-size: 20px;
-    font-weight: 800;
-    color: white;
-    margin-bottom: 6px;
-  }
-
-  .result-question {
-    font-size: 13px;
-    color: rgba(255,255,255,0.6);
-    font-style: italic;
-  }
-
-  .result-time {
-    font-size: 11px;
-    color: rgba(255,255,255,0.3);
-    margin-top: 8px;
-  }
+  .result-title { font-size: 20px; font-weight: 800; color: white; margin-bottom: 5px; }
+  .result-question { font-size: 13px; color: rgba(255,255,255,0.6); font-style: italic; }
+  .result-time { font-size: 11px; color: rgba(255,255,255,0.3); margin-top: 6px; }
 
   .result-body {
-    background: var(--bg2);
+    background: var(--white);
     border: 1px solid var(--border);
     border-top: none;
     border-radius: 0 0 16px 16px;
-    padding: 28px;
+    padding: 24px;
+    box-shadow: var(--shadow);
   }
 
   .diagnosis-text {
     font-size: 14px;
     line-height: 1.9;
-    color: #cbd5e1;
+    color: #374151;
     white-space: pre-wrap;
-    font-weight: 300;
   }
 
-  /* History */
   .history-item {
-    background: var(--bg3);
+    background: #f9fafb;
     border: 1px solid var(--border);
     border-radius: 10px;
-    padding: 14px 16px;
-    margin-bottom: 10px;
-    font-size: 13px;
+    padding: 12px 16px;
+    margin-bottom: 8px;
   }
 
-  .history-company {
-    font-weight: 600;
-    color: var(--text);
-    margin-bottom: 3px;
-  }
-
+  .history-company { font-weight: 600; color: var(--text); font-size: 13px; margin-bottom: 2px; }
   .history-meta { color: var(--muted); font-size: 12px; }
 
-  /* Footer */
   footer {
     text-align: center;
-    padding: 40px 0;
-    color: var(--muted);
+    padding: 32px 0 0;
+    color: var(--soft);
     font-size: 12px;
     border-top: 1px solid var(--border);
-    margin-top: 60px;
+    margin-top: 48px;
   }
 
-  footer span { color: var(--blue); }
+  footer span { color: var(--cyan); font-weight: 600; }
 
-  /* Responsive */
-  @media (max-width: 640px) {
+  @media (max-width: 600px) {
     .form-grid { grid-template-columns: 1fr; }
     .area-grid { grid-template-columns: repeat(2, 1fr); }
-    header { padding: 32px 0 24px; }
+    .container { padding: 20px 16px 40px; }
   }
 </style>
 </head>
 <body>
-
-<div class="glow glow-1"></div>
-<div class="glow glow-2"></div>
-
 <div class="container">
 
-  <!-- Header -->
-  <header>
-    <div class="logo">
-      <div class="logo-icon">🔱</div>
-      Vishwakarma AI
+  <div class="page-header">
+    <div class="header-icon">🎯</div>
+    <div class="header-text">
+      <h1>Startup Diagnosis Engine</h1>
+      <p>Honest AI-powered strategic analysis for your startup</p>
     </div>
-    <h1>Startup Diagnosis Engine</h1>
-    <p class="subtitle">Identify your critical bottlenecks and receive honest, specific strategic guidance tailored to your startup.</p>
-  </header>
+  </div>
 
-  <!-- Company Profile -->
   <div class="card">
     <div class="card-title">⚡ Company Profile</div>
     <div class="form-grid">
@@ -473,16 +354,15 @@
       </div>
       <div class="form-group full">
         <label>Unique Value Proposition <span class="required">*</span></label>
-        <textarea id="inputUVP" placeholder="What problem do you solve and for whom? Be specific. The more detail you give, the better the diagnosis."></textarea>
+        <textarea id="inputUVP" placeholder="What problem do you solve and for whom? Be specific."></textarea>
       </div>
       <div class="form-group full">
         <label>Biggest Challenge Right Now</label>
-        <textarea id="inputChallenge" placeholder="Describe your main challenge in detail — revenue, growth, team, product, fundraising..."></textarea>
+        <textarea id="inputChallenge" placeholder="Describe your main challenge in detail..."></textarea>
       </div>
     </div>
   </div>
 
-  <!-- Area Selector -->
   <div class="card">
     <div class="card-title">🎯 Select Diagnosis Area</div>
     <div class="area-grid">
@@ -506,29 +386,23 @@
       </button>
     </div>
 
-    <div class="question-wrap">
-      <div class="area-selected" id="areaLabel">✓ Selected: Product-Market Fit</div>
-      <select id="questionDropdown" style="margin-bottom:0"></select>
-    </div>
+    <div class="area-selected" id="areaLabel">✓ Selected: Product-Market Fit</div>
+    <select id="questionDropdown" style="margin-bottom:16px"></select>
 
     <div class="error-box" id="errorBox"></div>
 
-    <button class="btn-primary" id="runBtn" onclick="runDiagnosis()">
-      Run Diagnosis Engine →
-    </button>
+    <button class="btn-primary" id="runBtn" onclick="runDiagnosis()">Run Diagnosis Engine →</button>
     <div style="text-align:center">
       <button class="btn-secondary" onclick="resetForm()">↺ Reset Form</button>
     </div>
   </div>
 
-  <!-- Loading -->
   <div class="loading" id="loadingBox">
     <div class="spinner"></div>
     <div class="loading-title" id="loadingTitle">Analyzing your startup...</div>
     <div class="loading-sub" id="loadingSub">This takes 10–15 seconds</div>
   </div>
 
-  <!-- Results -->
   <div class="results" id="resultsBox">
     <div class="result-header">
       <div class="result-badge">🔱 Vishwakarma AI Diagnosis</div>
@@ -539,67 +413,27 @@
     <div class="result-body">
       <div class="diagnosis-text" id="diagnosisText"></div>
     </div>
-    <div style="text-align:center; margin-top:16px">
+    <div style="text-align:center;margin-top:14px">
       <button class="btn-secondary" onclick="resetForm()">↺ Run Another Diagnosis</button>
     </div>
   </div>
 
-  <!-- History -->
-  <div class="card" id="historyCard" style="display:none; margin-top:20px">
+  <div class="card" id="historyCard" style="display:none;margin-top:16px">
     <div class="card-title">📋 Previous Diagnoses</div>
     <div id="historyList"></div>
   </div>
 
-  <footer>
-    Built with 🔱 by <span>Vishwakarma AI</span> — India's AI Boardroom for Founders
-  </footer>
-
+  <footer>Powered by <span>Vishwakarma AI</span> — Board-Level Intelligence. On-Demand.</footer>
 </div>
 
 <script>
 const QUESTIONS = {
-  'product-market-fit': [
-    'How can we validate and improve our product-market fit?',
-    'What metrics indicate we have achieved product-market fit?',
-    'How should we prioritize features based on market feedback?',
-    'What customer feedback loops should we establish?',
-    'How do we measure product adoption and retention?'
-  ],
-  'growth-strategy': [
-    'Which acquisition channels should we prioritize right now?',
-    'What is our biggest growth bottleneck right now?',
-    'How do we scale from 10 to 100 customers?',
-    'How do we improve our conversion rate?',
-    'How do we improve our unit economics?'
-  ],
-  'fundraising': [
-    'Are we ready to raise our next funding round?',
-    'What metrics do investors want to see at our stage?',
-    'Should we raise VC funding or stay bootstrapped?',
-    'How do we approach Indian angel investors?',
-    'What is our fundraising story and pitch?'
-  ],
-  'team-culture': [
-    'What are the critical gaps in our founding team?',
-    'How do we attract top talent without large salaries?',
-    'When should we make our first key hire?',
-    'How do we build culture as an early stage startup?',
-    'How do we retain our best people?'
-  ],
-  'technology': [
-    'Is our current tech stack scalable for growth?',
-    'What technical debt should we address first?',
-    'Build vs buy — what should we prioritize?',
-    'How do we improve product development velocity?',
-    'What security and compliance do we need?'
-  ],
-  'operations': [
-    'What KPIs should we be tracking at our stage?',
-    'How do we reduce operational bottlenecks?',
-    'What processes should we document first?',
-    'How do we improve team productivity?',
-    'What operational systems do we need to build?'
-  ]
+  'product-market-fit': ['How can we validate and improve our product-market fit?','What metrics indicate we have achieved product-market fit?','How should we prioritize features based on market feedback?','What customer feedback loops should we establish?','How do we measure product adoption and retention?'],
+  'growth-strategy': ['Which acquisition channels should we prioritize right now?','What is our biggest growth bottleneck right now?','How do we scale from 10 to 100 customers?','How do we improve our conversion rate?','How do we improve our unit economics?'],
+  'fundraising': ['Are we ready to raise our next funding round?','What metrics do investors want to see at our stage?','Should we raise VC funding or stay bootstrapped?','How do we approach Indian angel investors?','What is our fundraising story and pitch?'],
+  'team-culture': ['What are the critical gaps in our founding team?','How do we attract top talent without large salaries?','When should we make our first key hire?','How do we build culture as an early stage startup?','How do we retain our best people?'],
+  'technology': ['Is our current tech stack scalable for growth?','What technical debt should we address first?','Build vs buy — what should we prioritize?','How do we improve product development velocity?','What security and compliance do we need?'],
+  'operations': ['What KPIs should we be tracking at our stage?','How do we reduce operational bottlenecks?','What processes should we document first?','How do we improve team productivity?','What operational systems do we need to build?']
 };
 
 let currentArea = 'product-market-fit';
@@ -607,27 +441,14 @@ let currentAreaLabel = 'Product-Market Fit';
 let history = [];
 
 function setArea(area, label) {
-  currentArea = area;
-  currentAreaLabel = label;
+  currentArea = area; currentAreaLabel = label;
   document.querySelectorAll('.area-btn').forEach(b => b.classList.remove('active'));
-  const ids = {
-    'product-market-fit': 'btnPMF',
-    'growth-strategy': 'btnGrowth',
-    'fundraising': 'btnFund',
-    'team-culture': 'btnTeam',
-    'technology': 'btnTech',
-    'operations': 'btnOps'
-  };
+  const ids = {'product-market-fit':'btnPMF','growth-strategy':'btnGrowth','fundraising':'btnFund','team-culture':'btnTeam','technology':'btnTech','operations':'btnOps'};
   document.getElementById(ids[area]).classList.add('active');
   document.getElementById('areaLabel').textContent = '✓ Selected: ' + label;
   const dd = document.getElementById('questionDropdown');
   dd.innerHTML = '';
-  QUESTIONS[area].forEach(q => {
-    const opt = document.createElement('option');
-    opt.value = q;
-    opt.textContent = q;
-    dd.appendChild(opt);
-  });
+  QUESTIONS[area].forEach(q => { const o = document.createElement('option'); o.value = q; o.textContent = q; dd.appendChild(o); });
 }
 
 async function runDiagnosis() {
@@ -639,9 +460,7 @@ async function runDiagnosis() {
   const challenge = document.getElementById('inputChallenge').value.trim();
   const question = document.getElementById('questionDropdown').value;
 
-  const errorBox = document.getElementById('errorBox');
-  errorBox.classList.remove('show');
-
+  document.getElementById('errorBox').classList.remove('show');
   if (!company) { showError('Please enter your company name'); return; }
   if (!uvp || uvp.length < 20) { showError('Please describe your value proposition in more detail'); return; }
 
@@ -657,7 +476,6 @@ async function runDiagnosis() {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ company, industry, teamSize, stage, uvp, challenge, area: currentArea, question })
     });
-
     const data = await response.json();
     document.getElementById('loadingBox').classList.remove('show');
     document.getElementById('runBtn').disabled = false;
@@ -669,8 +487,7 @@ async function runDiagnosis() {
       document.getElementById('diagnosisText').textContent = data.diagnosis;
       document.getElementById('resultsBox').classList.add('show');
       document.getElementById('resultsBox').scrollIntoView({ behavior: 'smooth' });
-
-      history.unshift({ company, area: currentAreaLabel, question, time: new Date().toLocaleString('en-IN') });
+      history.unshift({ company, area: currentAreaLabel, time: new Date().toLocaleString('en-IN') });
       updateHistory();
     } else {
       showError('Diagnosis failed: ' + (data.error || 'Unknown error'));
@@ -699,17 +516,11 @@ function resetForm() {
 }
 
 function updateHistory() {
-  if (history.length === 0) return;
+  if (!history.length) return;
   document.getElementById('historyCard').style.display = 'block';
-  document.getElementById('historyList').innerHTML = history.map(h => `
-    <div class="history-item">
-      <div class="history-company">${h.company}</div>
-      <div class="history-meta">${h.area} · ${h.time}</div>
-    </div>
-  `).join('');
+  document.getElementById('historyList').innerHTML = history.map(h => `<div class="history-item"><div class="history-company">${h.company}</div><div class="history-meta">${h.area} · ${h.time}</div></div>`).join('');
 }
 
-// Initialize
 setArea('product-market-fit', 'Product-Market Fit');
 </script>
 </body>
